@@ -77,21 +77,6 @@ database.ref().on("child_added", function (childSnapshot) {
     var diffTime = moment().diff(moment(firstArrival), "minutes");
     console.log("DIFFERENCE IN TIME: " + diffTime);
 
-    var updatedtime;
-    var time;
-
-    var update = function () {
-        time = moment();
-        updatedtime.html(time.format('HH:mm a'));
-    };
-
-    $(document).ready(function () {
-        updatedtime = $('#tbody');
-        update();
-        setInterval(update);
-    });
-
-
     //Time apart ('the difference between current and inital time' % frequency = 'remainder') This is also how many minutes used up
     var remainder = diffTime % trainFrequency;
     console.log(remainder);
@@ -105,7 +90,7 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 
     //Create a new row to train table
-    var newRow = $("<tr>").append(
+    var newRow = $("<tr>").addclass('id', 'myBtn').append(
         $("<td>").text(trainName),
         $("<td>").text(trainDestination),
         $("<td>").text(trainFrequency),
@@ -116,3 +101,29 @@ database.ref().on("child_added", function (childSnapshot) {
     //Append the new row to the table
     $("tbody").append(newRow);
 })
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
