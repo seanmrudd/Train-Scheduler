@@ -40,7 +40,7 @@ table tbody tr:hover {
 }
 
 .fa-trash{
-    vertical-align: middle;
+    vertical-align: auto;
 }
 
 /* The Modal (background) */
