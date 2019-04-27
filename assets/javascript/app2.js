@@ -18,10 +18,19 @@ $("#add-train-btn").on("click", function (event) {
   event.preventDefault();
 
   //Grab user input
-  var trainName = $("#train-name-input").val().trim();
-  var trainDestination = $("#destination-input").val().trim();
-  var trainIntialTime = $("#initialTrain-input").val().trim();
-  var trainFrequency = $("#frequency-input").val().trim();
+  //Don't submit blank input
+  if ($("#train-name-input").val() != '') {
+    var trainName = $("#train-name-input").val().trim();
+  }
+  if ($("#destination-input").val() != '') {
+    var trainDestination = $("#destination-input").val().trim();
+  }
+  if ($("#initialTrain-input").val() != '') {
+    var trainIntialTime = $("#initialTrain-input").val().trim();
+  }
+  if ($("#frequency-input").val() != '') {
+    var trainFrequency = $("#frequency-input").val().trim();
+  }
 
   console.log(trainName);
   console.log(trainDestination);
@@ -62,12 +71,14 @@ database.ref().on("child_added", function (childSnapshot) {
   var trainDestination = snapval.trainDestination;
   var trainIntialTime = snapval.trainIntialTime;
   var trainFrequency = snapval.trainFrequency;
+  var trainInfo = snapval;
 
   //Log in console
   console.log(trainName);
   console.log(trainDestination);
   console.log(trainIntialTime);
   console.log(trainFrequency);
+  console.log(trainInfo)
 
   //Sanitize initial arrival (Make it useable by putting it a day behind.  That way it wont be a future time.)
   var firstArrival = moment(trainIntialTime, "HH:mm").subtract(1, "days");
@@ -96,15 +107,16 @@ database.ref().on("child_added", function (childSnapshot) {
     $("<td>").text(trainFrequency),
     $("<td>").text(nextTrain),
     $("<td>").text(minRemaining),
-  ).addClass('alertModal');
+    $('<button>').addClass('fas fa-trash').attr('id', 'deleteBtn')
+  ).val(snapval);
 
+  console.log(newRow.val())
+  
   //Append the new row to the table
   $("tbody").append(newRow);
   console.log(newRow);
-})
 
-$(document).ready(function(){
-$('tr .alertModal').on('click', function(){
-alert();
-})
+  $('#deleteBtn').click(function () {
+    alert('hi');
+  })
 })
