@@ -100,10 +100,11 @@ database.ref().on("child_added", function (childSnapshot) {
 
   //Append the new row to the table
   $("tbody").append(newRow);
+  console.log(newRow);
 })
 
 $(document).ready(function(){
-$('tbody tr').on('click', function(){
-alert('this');
+$('tr .alertModal').on('click', function(){
+alert();
 })
 })
