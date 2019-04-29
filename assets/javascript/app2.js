@@ -16,7 +16,7 @@ var database = firebase.database();
 console.log(database);
 
 database.ref().on("value", function (childSnapshot) {
-  console.log(childSnapshot.val());
+  console.log(childSnapshot.val('childName'));
   console.log(Object.keys(childSnapshot.val()));
 })
 
@@ -54,8 +54,9 @@ $("#add-train-btn").on("click", function (event) {
   };
 
   //Upload data to database
-  database.ref().push(newTrain);
-
+  for (i=0; i<Object.keys(childSnapshot.val().length); i++){
+  database.ref().push(newTrain[i]);
+  }
   //Log in console
   // console.log(newTrain.trainName);
   // console.log(newTrain.trainDestination);
@@ -86,7 +87,7 @@ database.ref().on("child_added", function (childSnapshot) {
   // console.log(trainDestination);
   // console.log(trainIntialTime);
   // console.log(trainFrequency);
-  // console.log(trainInfo)
+  console.log(trainInfo)
 
   //Sanitize initial arrival (Make it useable by putting it a day behind.  That way it wont be a future time.)
   var firstArrival = moment(trainIntialTime, "HH:mm").subtract(1, "days");
@@ -117,9 +118,7 @@ database.ref().on("child_added", function (childSnapshot) {
     $("<td>").text(minRemaining),
     $('<td>').addClass('fas fa-trash').attr('id', 'deleteBtn'),
     $('<td>').addClass('fas fa-edit').attr('id', 'editBtn')
-  );
-
-  console.log(newRow.val())
+  ).attr('id', trainName);
 
   //Append the new row to the table
   $("tbody").append(newRow);
@@ -197,3 +196,4 @@ database.ref().on("child_added", function (childSnapshot) {
 //   database.ref().update(newTrain);
 
 });
+
