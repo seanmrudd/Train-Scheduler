@@ -16,7 +16,7 @@ var database = firebase.database();
 console.log(database);
 
 database.ref().on("value", function (childSnapshot) {
-  console.log(childSnapshot.val('childName'));
+  console.log(childSnapshot.val());
   console.log(Object.keys(childSnapshot.val()));
 })
 
