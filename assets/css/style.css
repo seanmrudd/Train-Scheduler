@@ -26,12 +26,24 @@ body {
     background-color: #0f1626;
 }
 
+#add-train-btn:hover {
+    font-size: 1.5rem;
+}
+
 #add-train-form {
     width: 100%;
 }
 
+#add-train-form:hover {
+    font-size: 1.5rem;
+}
+
 #train-schedule {
     width: 100%;
+}
+
+#train-schedule:hover {
+    font-size: 1.5rem;
 }
 
 table tbody tr:hover {
@@ -39,12 +51,18 @@ table tbody tr:hover {
     color: white;
 }
 
-.fa-trash{
-    vertical-align: auto;
+.fa-trash:hover {
+    font-size: 2rem;
+    animation-duration: 2s;
+}
+
+.fa-edit:hover {
+    font-size: 2rem;
+    animation-duration: 2s;
 }
 
 /* The Modal (background) */
-.modal {
+/* .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -56,19 +74,19 @@ table tbody tr:hover {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+  } */
   
   /* Modal Content */
-  .modal-content {
+  /* .modal-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
-  }
+  } */
   
   /* The Close Button */
-  .close {
+  /* .close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -80,5 +98,6 @@ table tbody tr:hover {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-  }
+  } */
+
 
