@@ -34,15 +34,23 @@ $("#add-train-btn").on("click", function (event) {
   //Don't submit blank input
   if ($("#train-name-input").val() != '') {
     var trainName = $("#train-name-input").val().trim();
+  } else {
+    alert('Need Train Name')
   }
   if ($("#destination-input").val() != '') {
     var trainDestination = $("#destination-input").val().trim();
+  } else {
+    alert('Need a Destination')
   }
   if ($("#initialTrain-input").val() != '') {
     var trainIntialTime = $("#initialTrain-input").val().trim();
+  } else {
+    alert('Need First Arrival')
   }
   if ($("#frequency-input").val() != '') {
     var trainFrequency = $("#frequency-input").val().trim();
+  } else {
+    alert('Need Frequency')
   }
 
   // console.log(trainName);
@@ -59,8 +67,8 @@ $("#add-train-btn").on("click", function (event) {
   };
 
   //Upload data to database
-  for (i=0; i<Object.keys(childSnapshot.val().length); i++){
-  database.ref().push(newTrain[i]);
+  for (i = 0; i < Object.keys(childSnapshot.val().length); i++) {
+    database.ref().push(newTrain[i]);
   }
   //Log in console
   // console.log(newTrain.trainName);
@@ -131,76 +139,91 @@ database.ref().on("child_added", function (childSnapshot) {
   $("tbody").append(newRow);
   console.log(newRow);
 
-//   //Pop up Modal to Edit data
-//   $(document).ready(function () {
-//     $('#editBtn').click(function () {
-//       $('#editModal').show();
-//     })
+  //   //Pop up Modal to Edit data
+  //   $(document).ready(function () {
+  //     $('#editBtn').click(function () {
+  //       $('#editModal').show();
+  //     })
 
-//     $('.close').click(function () {
-//       $('#editModal').hide();
-//     })
+  //     $('.close').click(function () {
+  //       $('#editModal').hide();
+  //     })
 
-//     $(window).click(function () {
-//       if (event.target == modal) {
-//         $('#editModal').hide();
-//       }
-//     })
-//   })
+  //     $(window).click(function () {
+  //       if (event.target == modal) {
+  //         $('#editModal').hide();
+  //       }
+  //     })
+  //   })
 
-// })
+  // })
 
-// $("#edit-add-train-btn").on("click", function (event) {
-//   event.preventDefault();
+  // $("#edit-add-train-btn").on("click", function (event) {
+  //   event.preventDefault();
 
-//   //Grab user input
-//   //Don't submit blank input
-//   if ($("#edit-train-name-input").val() != '') {
-//     var trainName = $("#edit-train-name-input").val().trim();
-//   }
-//   if ($("#edit-destination-input").val() != '') {
-//     var trainDestination = $("#edit-destination-input").val().trim();
-//   }
-//   if ($("#edit-initialTrain-input").val() != '') {
-//     var trainIntialTime = $("#edit-initialTrain-input").val().trim();
-//   }
-//   if ($("#edit-frequency-input").val() != '') {
-//     var trainFrequency = $("#edit-frequency-input").val().trim();
-//   }
+  //   //Grab user input
+  //   //Don't submit blank input
+  //   if ($("#edit-train-name-input").val() != '') {
+  //     var trainName = $("#edit-train-name-input").val().trim();
+  //   }
+  //   if ($("#edit-destination-input").val() != '') {
+  //     var trainDestination = $("#edit-destination-input").val().trim();
+  //   }
+  //   if ($("#edit-initialTrain-input").val() != '') {
+  //     var trainIntialTime = $("#edit-initialTrain-input").val().trim();
+  //   }
+  //   if ($("#edit-frequency-input").val() != '') {
+  //     var trainFrequency = $("#edit-frequency-input").val().trim();
+  //   }
 
-//   // console.log(trainName);
-//   // console.log(trainDestination);
-//   // console.log(trainIntialTime);
-//   // console.log(trainFrequency);
+  //   // console.log(trainName);
+  //   // console.log(trainDestination);
+  //   // console.log(trainIntialTime);
+  //   // console.log(trainFrequency);
 
-//   //Create local 'temporary' object for holding train data
-//   var newTrain = {
-//     trainName: trainName,
-//     trainDestination: trainDestination,
-//     trainIntialTime: trainIntialTime,
-//     trainFrequency: trainFrequency
-//   };
+  //   //Create local 'temporary' object for holding train data
+  //   var newTrain = {
+  //     trainName: trainName,
+  //     trainDestination: trainDestination,
+  //     trainIntialTime: trainIntialTime,
+  //     trainFrequency: trainFrequency
+  //   };
 
-//   //Upload data to database
-//   database.ref().update(newTrain);
+  //   //Upload data to database
+  //   database.ref().update(newTrain);
 
-//   //Log in console
-//   // console.log(newTrain.trainName);
-//   // console.log(newTrain.trainDestination);
-//   // console.log(newTrain.trainIntialTime);
-//   // console.log(newTrain.trainFrequency);
+  //   //Log in console
+  //   // console.log(newTrain.trainName);
+  //   // console.log(newTrain.trainDestination);
+  //   // console.log(newTrain.trainIntialTime);
+  //   // console.log(newTrain.trainFrequency);
 
-//   //Clear user inputs
-//   $("#edit-train-name-input").val("");
-//   $("#edit-destination-input").val("");
-//   $("#edit-intialTrain-input").val("");
-//   $("#edit-frequency-input").val("");
-// });
+  //   //Clear user inputs
+  //   $("#edit-train-name-input").val("");
+  //   $("#edit-destination-input").val("");
+  //   $("#edit-intialTrain-input").val("");
+  //   $("#edit-frequency-input").val("");
+  // });
 
-// $("#deleteBtn").on("click", function (event) {
-//   event.preventDefault();
+  // $("#deleteBtn").on("click", function (event) {
+  //   event.preventDefault();
 
-//   database.ref().update(newTrain);
+  //   database.ref().update(newTrain);
 
 });
 
+$.fn.scrollView = function () {
+  return this.each(function () {
+    $('html, body').animate({
+      scrollTop: $(this).offset().top
+    }, 2000);
+  });
+}
+
+$('#add-train-form').on("click", function () {
+  $('#train-info-form').scrollView();
+})
+
+$('#train-schedule').on("click", function () {
+  $('#top').scrollView();
+})
