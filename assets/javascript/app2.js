@@ -15,6 +15,11 @@ var database = firebase.database();
 
 console.log(database);
 
+var ref = database.ref('trains')
+
+console.log(ref);
+
+
 database.ref().on("value", function (childSnapshot) {
   console.log(childSnapshot.val());
   console.log(Object.keys(childSnapshot.val()));
@@ -118,7 +123,9 @@ database.ref().on("child_added", function (childSnapshot) {
     $("<td>").text(minRemaining),
     $('<td>').addClass('fas fa-trash').attr('id', 'deleteBtn'),
     $('<td>').addClass('fas fa-edit').attr('id', 'editBtn')
-  ).attr('id', trainName);
+  ).attr('id', trainName).attr('data-key', childSnapshot.key);
+
+  console.log(childSnapshot.key)
 
   //Append the new row to the table
   $("tbody").append(newRow);
